@@ -1,0 +1,424 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #f0f0f0;
+    background: #1a1a1a;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+.main-nav {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #c8a951;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.logo h1 {
+    color: #c8a951;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+.nav-menu a:hover {
+    color: #c8a951;
+    background: rgba(200, 169, 81, 0.1);
+    border-color: #c8a951;
+}
+
+/* Main content */
+main {
+    margin-top: 80px;
+    height: calc(100vh - 80px);
+}
+
+/* Show/hide sections */
+.content-section {
+    display: none;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+#home {
+    display: flex;
+}
+
+#home:target,
+#classes:target,
+#skills:target,
+#items:target,
+#gallery:target {
+    display: block;
+}
+
+#classes:target ~ #home,
+#skills:target ~ #home,
+#items:target ~ #home,
+#gallery:target ~ #home {
+    display: none;
+}
+
+/* Home page */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    color: #c8a951;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #f0f0f0;
+}
+
+/* Content sections */
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    color: #c8a951;
+    font-size: 2.5rem;
+    border-bottom: 2px solid #c8a951;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.section-header p {
+    color: #f0f0f0;
+    font-size: 1.2rem;
+}
+
+/* Classes Icons Grid - 2 per row */
+.classes-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 1rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.class-icon-card {
+    text-decoration: none;
+    color: #f0f0f0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(145deg, #2d2d2d, #252525);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.class-icon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c8a951, #e6c158);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.class-icon-card:hover::before {
+    transform: scaleX(1);
+}
+
+.class-icon-card:hover {
+    transform: translateY(-8px);
+    border-color: #c8a951;
+    box-shadow: 0 20px 40px rgba(200, 169, 81, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.class-icon-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #c8a951;
+    position: relative;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
+.class-icon-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.6) 100%);
+    border-radius: 50%;
+}
+
+.class-icon-card:hover .class-icon-image {
+    border-color: #e6c158;
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(200, 169, 81, 0.3);
+}
+
+.class-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.class-icon-card:hover .class-icon-img {
+    transform: scale(1.15);
+}
+
+.class-name {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.class-name h3 {
+    color: #c8a951;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.class-name h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: #c8a951;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.class-icon-card:hover .class-name h3 {
+    color: #e6c158;
+    text-shadow: 0 0 10px rgba(230, 193, 88, 0.3);
+}
+
+.class-icon-card:hover .class-name h3::after {
+    transform: scaleX(1);
+}
+
+/* Class-specific border colors */
+.warrior-icon {
+    border-color: #ff6b6b;
+}
+
+.sorceress-icon {
+    border-color: #339af0;
+}
+
+.witch-icon {
+    border-color: #9c36b5;
+}
+
+.ranger-icon {
+    border-color: #51cf66;
+}
+
+.huntress-icon {
+    border-color: #20c997;
+}
+
+.mercenary-icon {
+    border-color: #f76707;
+}
+
+.monk-icon {
+    border-color: #fab005;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        position: relative;
+    }
+    
+    main {
+        margin-top: 0;
+        height: auto;
+    }
+    
+    .nav-menu {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .section-content {
+        padding: 1rem;
+    }
+    
+    .classes-icons-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        gap: 2.5rem;
+    }
+    
+    .class-icon-card {
+        padding: 2.5rem;
+    }
+    
+    .class-icon-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .class-name h3 {
+        font-size: 2rem;
+    }
+    
+    .content-section {
+        height: auto;
+        min-height: calc(100vh - 80px);
+    }
+}
+
+@media (max-width: 480px) {
+    .classes-icons-grid {
+        gap: 2rem;
+    }
+    
+    .class-icon-card {
+        padding: 2rem;
+    }
+    
+    .class-icon-image {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .class-name h3 {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* Добавьте в самое начало style.css, после body { */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #f0f0f0;
+    /* Вот эти строки: */
+    background-image: url('images/banner-home.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #f0f0f0;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Фон с затемнением */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/banner-home.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    /* Регулируйте затемнение здесь: */
+    filter: brightness(50%); /* 50% яркости = темнее */
+}

@@ -1,0 +1,830 @@
+/* class-styles.css - Общие стили для всех страниц классов */
+
+.class-details-page {
+    padding-top: 80px;
+    min-height: 100vh;
+    background: #1a1a1a;
+}
+
+.class-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Hero Section */
+.class-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: start;
+}
+
+.class-info {
+    padding-right: 2rem;
+    height: fit-content;
+}
+
+.class-title {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Цвета для разных классов */
+.warrior .class-title { color: #ff6b6b; }
+.sorceress .class-title { color: #339af0; }
+.witch .class-title { color: #8b5cf6; }
+.ranger .class-title { color: #22c55e; }
+.huntress .class-title { color: #f59e0b; }
+.mercenary .class-title { color: #94a3b8; }
+.monk .class-title { color: #eab308; }
+
+.class-basic-info {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.class-attributes {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.class-attribute {
+    padding: 0.7rem 1.8rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    letter-spacing: 1.5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Цвета атрибутов по классам */
+.warrior .class-attribute { 
+    background: linear-gradient(135deg, #ff6b6b, #ff4757); 
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+.sorceress .class-attribute { 
+    background: linear-gradient(135deg, #339af0, #228be6); 
+    box-shadow: 0 5px 15px rgba(51, 154, 240, 0.3);
+}
+.witch .class-attribute { 
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed); 
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}
+.ranger .class-attribute { 
+    background: linear-gradient(135deg, #22c55e, #16a34a); 
+    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+}
+.huntress .class-attribute { 
+    background: linear-gradient(135deg, #f59e0b, #d97706); 
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+}
+.mercenary .class-attribute { 
+    background: linear-gradient(135deg, #94a3b8, #64748b); 
+    box-shadow: 0 5px 15px rgba(148, 163, 184, 0.3);
+}
+.monk .class-attribute { 
+    background: linear-gradient(135deg, #eab308, #ca8a04); 
+    box-shadow: 0 5px 15px rgba(234, 179, 8, 0.3);
+}
+
+.class-weapon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 35px;
+    border: 3px solid;
+}
+
+/* Цвета оружия по классам */
+.warrior .class-weapon { 
+    background: rgba(255, 107, 107, 0.15); 
+    border-color: #ff6b6b; 
+}
+.sorceress .class-weapon { 
+    background: rgba(51, 154, 240, 0.15); 
+    border-color: #339af0; 
+}
+.witch .class-weapon { 
+    background: rgba(139, 92, 246, 0.15); 
+    border-color: #8b5cf6; 
+}
+.ranger .class-weapon { 
+    background: rgba(34, 197, 94, 0.15); 
+    border-color: #22c55e; 
+}
+.huntress .class-weapon { 
+    background: rgba(245, 158, 11, 0.15); 
+    border-color: #f59e0b; 
+}
+.mercenary .class-weapon { 
+    background: rgba(148, 163, 184, 0.15); 
+    border-color: #94a3b8; 
+}
+.monk .class-weapon { 
+    background: rgba(234, 179, 8, 0.15); 
+    border-color: #eab308; 
+}
+
+.weapon-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.weapon-name {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Цвета названия оружия */
+.warrior .weapon-name { color: #ff6b6b; }
+.sorceress .weapon-name { color: #339af0; }
+.witch .weapon-name { color: #8b5cf6; }
+.ranger .weapon-name { color: #22c55e; }
+.huntress .weapon-name { color: #f59e0b; }
+.mercenary .weapon-name { color: #94a3b8; }
+.monk .weapon-name { color: #eab308; }
+
+.class-description {
+    margin-top: 2rem;
+}
+
+.class-description h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 4px solid;
+    padding-bottom: 0.7rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Цвета подзаголовков по классам */
+.warrior .class-description h2 { 
+    color: #ff6b6b; 
+    border-color: #ff6b6b; 
+}
+.sorceress .class-description h2 { 
+    color: #339af0; 
+    border-color: #339af0; 
+}
+.witch .class-description h2 { 
+    color: #8b5cf6; 
+    border-color: #8b5cf6; 
+}
+.ranger .class-description h2 { 
+    color: #22c55e; 
+    border-color: #22c55e; 
+}
+.huntress .class-description h2 { 
+    color: #f59e0b; 
+    border-color: #f59e0b; 
+}
+.mercenary .class-description h2 { 
+    color: #94a3b8; 
+    border-color: #94a3b8; 
+}
+.monk .class-description h2 { 
+    color: #eab308; 
+    border-color: #eab308; 
+}
+
+.class-description p {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: #f0f0f0;
+    margin-bottom: 1.8rem;
+    text-align: justify;
+}
+
+.class-image {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.class-full-image {
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+    border-radius: 20px;
+    border: 5px solid;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.class-full-image:hover {
+    transform: scale(1.02);
+}
+
+/* Цвета рамок фото по классам */
+.warrior .class-full-image { 
+    border-color: #ff6b6b; 
+    box-shadow: 0 20px 50px rgba(255, 107, 107, 0.25);
+}
+.sorceress .class-full-image { 
+    border-color: #339af0; 
+    box-shadow: 0 20px 50px rgba(51, 154, 240, 0.25);
+}
+.witch .class-full-image { 
+    border-color: #8b5cf6; 
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25);
+}
+.ranger .class-full-image { 
+    border-color: #22c55e; 
+    box-shadow: 0 20px 50px rgba(34, 197, 94, 0.25);
+}
+.huntress .class-full-image { 
+    border-color: #f59e0b; 
+    box-shadow: 0 20px 50px rgba(245, 158, 11, 0.25);
+}
+.mercenary .class-full-image { 
+    border-color: #94a3b8; 
+    box-shadow: 0 20px 50px rgba(148, 163, 184, 0.25);
+}
+.monk .class-full-image { 
+    border-color: #eab308; 
+    box-shadow: 0 20px 50px rgba(234, 179, 8, 0.25);
+}
+
+/* Блок текста под фото */
+.text-under-photo {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+    padding: 3rem;
+    border-radius: 15px;
+    border-left: 5px solid;
+    background: rgba(0,0,0,0.2);
+}
+
+/* Цвета блока под фото по классам */
+.warrior .text-under-photo { 
+    border-color: #ff6b6b; 
+    background: rgba(255, 107, 107, 0.05);
+}
+.sorceress .text-under-photo { 
+    border-color: #339af0; 
+    background: rgba(51, 154, 240, 0.05);
+}
+.witch .text-under-photo { 
+    border-color: #8b5cf6; 
+    background: rgba(139, 92, 246, 0.05);
+}
+.ranger .text-under-photo { 
+    border-color: #22c55e; 
+    background: rgba(34, 197, 94, 0.05);
+}
+.huntress .text-under-photo { 
+    border-color: #f59e0b; 
+    background: rgba(245, 158, 11, 0.05);
+}
+.mercenary .text-under-photo { 
+    border-color: #94a3b8; 
+    background: rgba(148, 163, 184, 0.05);
+}
+.monk .text-under-photo { 
+    border-color: #eab308; 
+    background: rgba(234, 179, 8, 0.05);
+}
+
+.text-under-photo h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Цвета заголовков в блоке под фото */
+.warrior .text-under-photo h3 { color: #ff6b6b; }
+.sorceress .text-under-photo h3 { color: #339af0; }
+.witch .text-under-photo h3 { color: #8b5cf6; }
+.ranger .text-under-photo h3 { color: #22c55e; }
+.huntress .text-under-photo h3 { color: #f59e0b; }
+.mercenary .text-under-photo h3 { color: #94a3b8; }
+.monk .text-under-photo h3 { color: #eab308; }
+
+.text-under-photo p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #f0f0f0;
+    margin-bottom: 1.5rem;
+}
+
+/* Abilities Section */
+.abilities-section {
+    margin: 5rem 0;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    border-bottom: 4px solid;
+    padding-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Цвета заголовков секций по классам */
+.warrior .section-title { 
+    color: #ff6b6b; 
+    border-color: #ff6b6b; 
+}
+.sorceress .section-title { 
+    color: #339af0; 
+    border-color: #339af0; 
+}
+.witch .section-title { 
+    color: #8b5cf6; 
+    border-color: #8b5cf6; 
+}
+.ranger .section-title { 
+    color: #22c55e; 
+    border-color: #22c55e; 
+}
+.huntress .section-title { 
+    color: #f59e0b; 
+    border-color: #f59e0b; 
+}
+.mercenary .section-title { 
+    color: #94a3b8; 
+    border-color: #94a3b8; 
+}
+.monk .section-title { 
+    color: #eab308; 
+    border-color: #eab308; 
+}
+
+.abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.ability-card {
+    background: linear-gradient(145deg, #2d2d2d, #252525);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 3px solid #444;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ability-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+/* Цвета полосок в карточках способностей */
+.warrior .ability-card::before { background: linear-gradient(90deg, #ff6b6b, #ff4757); }
+.sorceress .ability-card::before { background: linear-gradient(90deg, #339af0, #228be6); }
+.witch .ability-card::before { background: linear-gradient(90deg, #8b5cf6, #7c3aed); }
+.ranger .ability-card::before { background: linear-gradient(90deg, #22c55e, #16a34a); }
+.huntress .ability-card::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+.mercenary .ability-card::before { background: linear-gradient(90deg, #94a3b8, #64748b); }
+.monk .ability-card::before { background: linear-gradient(90deg, #eab308, #ca8a04); }
+
+.ability-card:hover::before {
+    transform: scaleX(1);
+}
+
+.ability-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Цвета рамок при наведении */
+.warrior .ability-card:hover { border-color: #ff6b6b; }
+.sorceress .ability-card:hover { border-color: #339af0; }
+.witch .ability-card:hover { border-color: #8b5cf6; }
+.ranger .ability-card:hover { border-color: #22c55e; }
+.huntress .ability-card:hover { border-color: #f59e0b; }
+.mercenary .ability-card:hover { border-color: #94a3b8; }
+.monk .ability-card:hover { border-color: #eab308; }
+
+.ability-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Цвета заголовков способностей */
+.warrior .ability-card h3 { color: #ff6b6b; }
+.sorceress .ability-card h3 { color: #339af0; }
+.witch .ability-card h3 { color: #8b5cf6; }
+.ranger .ability-card h3 { color: #22c55e; }
+.huntress .ability-card h3 { color: #f59e0b; }
+.mercenary .ability-card h3 { color: #94a3b8; }
+.monk .ability-card h3 { color: #eab308; }
+
+.ability-type {
+    color: #aaa;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.ability-description {
+    color: #f0f0f0;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    font-size: 1.1rem;
+}
+
+.ability-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.ability-tag {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Цвета тегов по классам */
+.warrior .ability-tag { 
+    background: rgba(255, 107, 107, 0.25); 
+    color: #ff6b6b; 
+}
+.sorceress .ability-tag { 
+    background: rgba(51, 154, 240, 0.25); 
+    color: #339af0; 
+}
+.witch .ability-tag { 
+    background: rgba(139, 92, 246, 0.25); 
+    color: #8b5cf6; 
+}
+.ranger .ability-tag { 
+    background: rgba(34, 197, 94, 0.25); 
+    color: #22c55e; 
+}
+.huntress .ability-tag { 
+    background: rgba(245, 158, 11, 0.25); 
+    color: #f59e0b; 
+}
+.mercenary .ability-tag { 
+    background: rgba(148, 163, 184, 0.25); 
+    color: #94a3b8; 
+}
+.monk .ability-tag { 
+    background: rgba(234, 179, 8, 0.25); 
+    color: #eab308; 
+}
+
+/* Subclasses Section */
+.subclasses-section {
+    margin: 5rem 0;
+}
+
+.subclasses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.subclass-card {
+    background: linear-gradient(145deg, #2d2d2d, #252525);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 4px solid;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.subclass-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.subclass-icon {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.subclass-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.9) 100%);
+}
+
+.subclass-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 0;
+    z-index: 2;
+    position: relative;
+    transition: all 0.5s ease;
+    box-shadow: none;
+}
+
+.subclass-card:hover .subclass-img {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.subclass-info {
+    padding: 2.5rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.subclass-name {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.subclass-tagline {
+    color: #e6c158;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.subclass-description {
+    color: #f0f0f0;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    flex-grow: 1;
+}
+
+.subclass-features h4 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.subclass-features ul {
+    list-style: none;
+    text-align: left;
+}
+
+.subclass-features li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #444;
+    color: #ccc;
+    padding-left: 2rem;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.subclass-features li:before {
+    content: '▶';
+    position: absolute;
+    left: 0.5rem;
+    color: inherit;
+    font-size: 0.8rem;
+}
+
+.subclass-features li:last-child {
+    border-bottom: none;
+}
+
+/* Back Button */
+.back-section {
+    text-align: center;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 3px solid #444;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 1.2rem 2.5rem;
+    border: 3px solid;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Цвета кнопок "Назад" по классам */
+.warrior .back-button { 
+    color: #ff6b6b; 
+    border-color: #ff6b6b; 
+    background: rgba(255, 107, 107, 0.1); 
+}
+.sorceress .back-button { 
+    color: #339af0; 
+    border-color: #339af0; 
+    background: rgba(51, 154, 240, 0.1); 
+}
+.witch .back-button { 
+    color: #8b5cf6; 
+    border-color: #8b5cf6; 
+    background: rgba(139, 92, 246, 0.1); 
+}
+.ranger .back-button { 
+    color: #22c55e; 
+    border-color: #22c55e; 
+    background: rgba(34, 197, 94, 0.1); 
+}
+.huntress .back-button { 
+    color: #f59e0b; 
+    border-color: #f59e0b; 
+    background: rgba(245, 158, 11, 0.1); 
+}
+.mercenary .back-button { 
+    color: #94a3b8; 
+    border-color: #94a3b8; 
+    background: rgba(148, 163, 184, 0.1); 
+}
+.monk .back-button { 
+    color: #eab308; 
+    border-color: #eab308; 
+    background: rgba(234, 179, 8, 0.1); 
+}
+
+.back-button:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Цвета кнопок при наведении */
+.warrior .back-button:hover { 
+    background: #ff6b6b; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+}
+.sorceress .back-button:hover { 
+    background: #339af0; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(51, 154, 240, 0.4);
+}
+.witch .back-button:hover { 
+    background: #8b5cf6; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+}
+.ranger .back-button:hover { 
+    background: #22c55e; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
+}
+.huntress .back-button:hover { 
+    background: #f59e0b; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+}
+.mercenary .back-button:hover { 
+    background: #94a3b8; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(148, 163, 184, 0.4);
+}
+.monk .back-button:hover { 
+    background: #eab308; 
+    color: #1a1a1a; 
+    box-shadow: 0 15px 30px rgba(234, 179, 8, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .class-hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .class-info {
+        padding-right: 0;
+    }
+    
+    .class-title {
+        font-size: 3rem;
+    }
+    
+    .subclasses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .class-image {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .class-container {
+        padding: 1rem;
+    }
+    
+    .class-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .abilities-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .subclasses-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .subclass-icon {
+        height: 220px;
+    }
+    
+    .subclass-name {
+        font-size: 2rem;
+    }
+    
+    .class-description h2 {
+        font-size: 2.2rem;
+    }
+    
+    .class-description p {
+        font-size: 1.1rem;
+    }
+    
+    .text-under-photo {
+        padding: 2rem;
+    }
+    
+    .text-under-photo h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .class-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .subclass-icon {
+        height: 200px;
+    }
+    
+    .subclass-name {
+        font-size: 1.8rem;
+    }
+    
+    .back-button {
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+    }
+}

@@ -1,0 +1,639 @@
+/* ========================================
+   ITEMS SECTION - PATH OF EXILE 2
+   Стили для страниц предметов
+   ======================================== */
+
+/* -------------------- */
+/* Базовые стили страницы */
+/* -------------------- */
+
+/* Основной контейнер страницы предметов */
+.items-page {
+    padding-top: 80px;           /* Отступ сверху для фиксированной навигации */
+    min-height: 100vh;            /* Минимальная высота = вся видимая область */
+    background: #1a1a1a;          /* Темный фон, как на всем сайте */
+}
+
+/* Контейнер для контента - центрирование и ограничение ширины */
+.items-container {
+    max-width: 1200px;            /* Максимальная ширина контента */
+    margin: 0 auto;                /* Центрирование по горизонтали */
+    padding: 2rem;                 /* Внутренние отступы */
+}
+
+/* -------------------- */
+/* Заголовки страниц */
+/* -------------------- */
+
+/* Главный заголовок страницы (например "Item Database") */
+.page-title {
+    color: #c8a951;                /* Золотой цвет PoE */
+    font-size: 3.5rem;             /* Крупный размер */
+    margin-bottom: 1rem;           /* Отступ снизу */
+    text-align: center;            /* Выравнивание по центру */
+    border-bottom: 3px solid #c8a951; /* Золотая линия снизу */
+    padding-bottom: 1rem;          /* Отступ до линии */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Тень для читаемости */
+    font-family: 'Arial Black', sans-serif; /* Жирный шрифт */
+    text-transform: uppercase;      /* Все заглавные */
+}
+
+/* Подзаголовок страницы */
+.page-subtitle {
+    color: #f0f0f0;                /* Светлый текст */
+    font-size: 1.2rem;             /* Средний размер */
+    text-align: center;            /* По центру */
+    margin-bottom: 3rem;            /* Большой отступ снизу */
+    font-style: italic;             /* Курсив */
+}
+
+/* -------------------- */
+/* Навигация внутри раздела Items */
+/* -------------------- */
+
+/* Панель навигации между категориями предметов */
+.items-nav {
+    background: #2d2d2d;            /* Темно-серый фон */
+    padding: 1rem;                  /* Внутренние отступы */
+    border-radius: 10px;            /* Скругленные углы */
+    margin-bottom: 2rem;            /* Отступ снизу */
+    border: 2px solid #c8a951;      /* Золотая рамка */
+    display: flex;                  /* Гибкий контейнер */
+    flex-wrap: wrap;                /* Перенос на новую строку при необходимости */
+    gap: 1rem;                      /* Расстояние между ссылками */
+    justify-content: center;         /* Центрирование по горизонтали */
+}
+
+/* Ссылки в навигации */
+.items-nav a {
+    color: #f0f0f0;                 /* Светлый текст */
+    text-decoration: none;           /* Убираем подчеркивание */
+    padding: 0.5rem 1rem;            /* Внутренние отступы */
+    border-radius: 5px;              /* Скругленные углы */
+    transition: all 0.3s ease;       /* Плавная анимация */
+    font-weight: bold;               /* Жирный шрифт */
+}
+
+/* Эффект при наведении на ссылку навигации */
+.items-nav a:hover {
+    color: #c8a951;                  /* Золотой текст */
+    background: rgba(200, 169, 81, 0.1); /* Полупрозрачный золотой фон */
+}
+
+/* Активная ссылка (текущая страница) */
+.items-nav a.active {
+    color: #c8a951;                  /* Золотой текст */
+    background: rgba(200, 169, 81, 0.2); /* Более насыщенный фон */
+    border: 1px solid #c8a951;       /* Золотая рамка */
+}
+
+/* -------------------- */
+/* Сетка категорий на главной странице items/index.html */
+/* -------------------- */
+
+/* Сетка для отображения карточек категорий */
+.categories-grid {
+    display: grid;                   /* Используем CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Адаптивная сетка */
+    gap: 2rem;                       /* Расстояние между карточками */
+    margin: 3rem 0;                  /* Отступы сверху и снизу */
+}
+
+/* Карточка категории предметов */
+.category-card {
+    background: linear-gradient(145deg, #2d2d2d, #252525); /* Градиентный фон */
+    border-radius: 15px;             /* Сильно скругленные углы */
+    padding: 2rem;                   /* Внутренние отступы */
+    text-decoration: none;            /* Убираем подчеркивание ссылки */
+    color: #f0f0f0;                  /* Светлый текст */
+    border: 2px solid #444;           /* Темно-серая рамка */
+    transition: all 0.3s ease;        /* Плавная анимация */
+    display: flex;                    /* Гибкий контейнер */
+    flex-direction: column;           /* Элементы в колонку */
+    align-items: center;              /* Центрирование по горизонтали */
+    text-align: center;               /* Текст по центру */
+    position: relative;               /* Для позиционирования псевдоэлементов */
+    overflow: hidden;                 /* Скрываем выходящее за пределы */
+    min-height: 280px;                /* Минимальная высота */
+    justify-content: flex-end;        /* Контент прижат к низу */
+    z-index: 1;                       /* Базовый слой */
+}
+
+/* Фоновое изображение для карточки (псевдоэлемент) */
+.category-card::before {
+    content: '';                      /* Обязательно для псевдоэлемента */
+    position: absolute;               /* Абсолютное позиционирование */
+    top: 0;                            /* Растягиваем на всю карточку */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;          /* Изображение полностью помещается */
+    background-position: center 30%;   /* Смещение немного вверх */
+    background-repeat: no-repeat;       /* Не повторять */
+    opacity: 0.15;                     /* Полупрозрачное */
+    transition: all 0.3s ease;         /* Плавная анимация */
+    z-index: 1;                         /* Под контентом */
+}
+
+/* Эффект при наведении на карточку - фон становится ярче */
+.category-card:hover::before {
+    opacity: 0.25;                     /* Увеличиваем прозрачность */
+    transform: scale(1.05);             /* Легкое увеличение */
+}
+
+/* Контент карточки поверх фона */
+.category-card > * {
+    position: relative;                /* Относительное позиционирование */
+    z-index: 2;                         /* Поверх фона */
+}
+
+/* Маленькая иконка в углу карточки */
+.category-card::after {
+    content: '';                       /* Псевдоэлемент */
+    position: absolute;                /* Абсолютное позиционирование */
+    top: 1rem;                          /* Отступ сверху */
+    right: 1rem;                        /* Отступ справа */
+    width: 32px;                        /* Ширина иконки */
+    height: 32px;                       /* Высота иконки */
+    background-size: contain;           /* Изображение помещается */
+    background-position: center;        /* По центру */
+    background-repeat: no-repeat;       /* Не повторять */
+    opacity: 0.5;                       /* Полупрозрачная */
+    z-index: 2;                         /* Поверх фона */
+    transition: opacity 0.3s ease;      /* Плавная анимация */
+}
+
+/* При наведении иконка становится ярче */
+.category-card:hover::after {
+    opacity: 1;                         /* Полностью видимая */
+}
+
+/* -------------------- */
+/* Фоновые изображения для каждой категории */
+/* -------------------- */
+
+/* Валюта - основное фоновое изображение */
+.category-card[data-category="currency"]::before {
+    background-image: url('images/currency/chaos-orb.png');
+}
+
+/* Валюта - иконка в углу */
+.category-card[data-category="currency"]::after {
+    background-image: url('images/currency/chaos-orb.png');
+}
+
+/* Сущности */
+.category-card[data-category="essences"]::before {
+    background-image: url('images/essences/essence-of-battle.png');
+}
+
+.category-card[data-category="essences"]::after {
+    background-image: url('images/essences/essence-of-battle.png');
+}
+
+/* Катализаторы */
+.category-card[data-category="catalysts"]::before {
+    background-image: url('images/catalysts/adaptive-catalyst.png');
+}
+
+.category-card[data-category="catalysts"]::after {
+    background-image: url('images/catalysts/adaptive-catalyst.png');
+}
+
+/* Знамения (Omens) */
+.category-card[data-category="omens"]::before {
+    background-image: url('images/omens/omen-of-corruption.png');
+}
+
+.category-card[data-category="omens"]::after {
+    background-image: url('images/omens/omen-of-corruption.png');
+}
+
+/* Дистиллированные эмоции */
+.category-card[data-category="distilled"]::before {
+    background-image: url('images/distilled/distilled-ire.png');
+}
+
+.category-card[data-category="distilled"]::after {
+    background-image: url('images/distilled/distilled-ire.png');
+}
+
+/* Оружие */
+.category-card[data-category="weapons"]::before {
+    background-image: url('images/weapons/mace.png');
+}
+
+.category-card[data-category="weapons"]::after {
+    background-image: url('images/weapons/mace.png');
+}
+
+/* Броня */
+.category-card[data-category="armour"]::before {
+    background-image: url('images/armour/body-armour.png');
+}
+
+.category-card[data-category="armour"]::after {
+    background-image: url('images/armour/body-armour.png');
+}
+
+/* Уникальные предметы */
+.category-card[data-category="uniques"]::before {
+    background-image: url('images/uniques/headhunter.png');
+}
+
+.category-card[data-category="uniques"]::after {
+    background-image: url('images/uniques/headhunter.png');
+}
+
+/* Заголовок карточки категории */
+.category-card h2 {
+    color: #c8a951;                    /* Золотой цвет */
+    font-size: 1.8rem;                 /* Размер шрифта */
+    margin-bottom: 0.5rem;              /* Отступ снизу */
+    position: relative;                 /* Относительное позиционирование */
+    z-index: 2;                          /* Поверх фона */
+}
+
+/* Текст описания в карточке */
+.category-card p {
+    color: #aaa;                        /* Серый цвет */
+    margin-bottom: 1rem;                 /* Отступ снизу */
+    position: relative;                  /* Относительное позиционирование */
+    z-index: 2;                           /* Поверх фона */
+}
+
+/* Счетчик предметов (например "25+ items") */
+.item-count {
+    background: rgba(200, 169, 81, 0.2); /* Полупрозрачный золотой фон */
+    color: #c8a951;                      /* Золотой текст */
+    padding: 0.3rem 1rem;                /* Внутренние отступы */
+    border-radius: 20px;                  /* Сильно скругленные углы */
+    font-size: 0.9rem;                    /* Размер шрифта */
+    font-weight: bold;                    /* Жирный шрифт */
+    position: relative;                    /* Относительное позиционирование */
+    z-index: 2;                             /* Поверх фона */
+}
+
+/* -------------------- */
+/* Секции категорий на страницах (currency.html, essences.html и т.д.) */
+/* -------------------- */
+
+/* Контейнер для категории (например "Basic Currency") */
+.category-section {
+    margin: 3rem 0;                      /* Отступы сверху и снизу */
+    padding: 1.5rem;                     /* Внутренние отступы */
+    background: linear-gradient(145deg, #252525, #1f1f1f); /* Темный градиент */
+    border-radius: 15px;                  /* Скругленные углы */
+    border: 2px solid #c8a951;            /* Золотая рамка */
+}
+
+/* Заголовок категории с иконкой */
+.category-header {
+    display: flex;                        /* Гибкий контейнер */
+    align-items: center;                  /* Выравнивание по вертикали */
+    gap: 1rem;                            /* Расстояние между элементами */
+    margin-bottom: 2rem;                   /* Отступ снизу */
+    padding-bottom: 1rem;                  /* Внутренний отступ снизу */
+    border-bottom: 2px solid #c8a951;      /* Золотая линия снизу */
+}
+
+/* Заголовок категории */
+.category-header h3 {
+    color: #c8a951;                        /* Золотой цвет */
+    font-size: 2rem;                       /* Размер шрифта */
+    font-family: 'Arial Black', sans-serif; /* Жирный шрифт */
+    text-transform: uppercase;               /* Все заглавные */
+}
+
+/* Дополнительная информация в заголовке (stack size и т.д.) */
+.category-header p {
+    color: #aaa;                           /* Серый цвет */
+    margin-left: auto;                      /* Прижимаем к правому краю */
+    font-size: 0.9rem;                      /* Маленький шрифт */
+}
+
+/* -------------------- */
+/* Сетка предметов внутри категории */
+/* -------------------- */
+
+/* Сетка для карточек предметов */
+.items-grid {
+    display: grid;                          /* CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Адаптивная сетка */
+    gap: 1.5rem;                            /* Расстояние между карточками */
+    margin-top: 2rem;                        /* Отступ сверху */
+}
+
+/* Карточка отдельного предмета */
+.item-card {
+    background: linear-gradient(145deg, #2d2d2d, #252525); /* Градиентный фон */
+    border-radius: 12px;                     /* Скругленные углы */
+    padding: 1.5rem;                         /* Внутренние отступы */
+    border: 2px solid #444;                   /* Темно-серая рамка */
+    transition: all 0.3s ease;                /* Плавная анимация */
+    display: flex;                            /* Гибкий контейнер */
+    gap: 1rem;                                /* Расстояние между иконкой и текстом */
+    position: relative;                       /* Для псевдоэлементов */
+    overflow: hidden;                         /* Скрываем выходящее */
+}
+
+/* Золотая линия слева при наведении */
+.item-card::before {
+    content: '';                              /* Псевдоэлемент */
+    position: absolute;                       /* Абсолютное позиционирование */
+    top: 0;                                    /* От верха */
+    left: 0;                                   /* От левого края */
+    width: 4px;                                /* Толщина линии */
+    height: 100%;                              /* На всю высоту */
+    background: linear-gradient(180deg, #c8a951, #e6c158); /* Золотой градиент */
+    transform: scaleY(0);                      /* Изначально скрыта */
+    transform-origin: top;                      /* Анимация сверху */
+    transition: transform 0.3s ease;            /* Плавное появление */
+}
+
+/* При наведении линия появляется */
+.item-card:hover::before {
+    transform: scaleY(1);                      /* Полностью видима */
+}
+
+/* Эффект при наведении на карточку предмета */
+.item-card:hover {
+    transform: translateY(-4px);                /* Поднимаем вверх */
+    border-color: #c8a951;                      /* Золотая рамка */
+    box-shadow: 0 10px 20px rgba(200, 169, 81, 0.15); /* Тень */
+}
+
+/* Иконка предмета */
+.item-icon {
+    width: 60px;                                /* Ширина */
+    height: 60px;                               /* Высота */
+    border-radius: 10px;                         /* Скругленные углы */
+    background: #1a1a1a;                         /* Темный фон */
+    display: flex;                               /* Центрируем содержимое */
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #444;                      /* Рамка */
+    font-size: 1.8rem;                           /* Размер для эмодзи (запасной) */
+    flex-shrink: 0;                              /* Запрещаем сжиматься */
+}
+
+/* Изображение внутри иконки */
+.item-icon img {
+    max-width: 100%;                             /* Не больше контейнера */
+    max-height: 100%;                            /* Не больше контейнера */
+    object-fit: contain;                         /* Сохраняем пропорции */
+}
+
+/* Информационная часть карточки */
+.item-info {
+    flex: 1;                                      /* Занимает все доступное место */
+}
+
+/* Название предмета */
+.item-info h4 {
+    color: #c8a951;                               /* Золотой цвет */
+    font-size: 1.2rem;                            /* Размер шрифта */
+    margin-bottom: 0.3rem;                         /* Отступ снизу */
+    font-weight: bold;                             /* Жирный */
+}
+
+/* Тип предмета (например "Crafting Orb") */
+.item-type {
+    color: #888;                                   /* Серый цвет */
+    font-size: 0.8rem;                             /* Маленький шрифт */
+    text-transform: uppercase;                      /* Заглавные */
+    margin-bottom: 0.5rem;                          /* Отступ снизу */
+}
+
+/* Описание предмета */
+.item-description {
+    color: #f0f0f0;                                /* Светлый текст */
+    font-size: 0.9rem;                              /* Размер шрифта */
+    line-height: 1.4;                                /* Межстрочный интервал */
+    margin-bottom: 0.8rem;                           /* Отступ снизу */
+}
+
+/* Контейнер для тегов предмета */
+.item-tags {
+    display: flex;                                   /* Гибкий контейнер */
+    gap: 0.5rem;                                     /* Расстояние между тегами */
+    flex-wrap: wrap;                                 /* Перенос на новую строку */
+}
+
+/* Отдельный тег (например "Stack: 20") */
+.item-tag {
+    background: rgba(200, 169, 81, 0.1);             /* Полупрозрачный золотой */
+    color: #c8a951;                                   /* Золотой текст */
+    padding: 0.2rem 0.6rem;                           /* Внутренние отступы */
+    border-radius: 12px;                               /* Скругленные углы */
+    font-size: 0.7rem;                                 /* Маленький шрифт */
+    border: 1px solid rgba(200, 169, 81, 0.3);         /* Полупрозрачная рамка */
+}
+
+/* Отображение размера стека в углу карточки */
+.stack-size {
+    position: absolute;                               /* Абсолютное позиционирование */
+    top: 0.5rem;                                       /* Отступ сверху */
+    right: 0.5rem;                                     /* Отступ справа */
+    background: rgba(0, 0, 0, 0.5);                    /* Полупрозрачный черный */
+    color: #aaa;                                       /* Серый текст */
+    padding: 0.2rem 0.5rem;                            /* Внутренние отступы */
+    border-radius: 12px;                                /* Скругленные углы */
+    font-size: 0.7rem;                                  /* Маленький шрифт */
+    border: 1px solid #444;                             /* Рамка */
+}
+
+/* -------------------- */
+/* Специальные типы карточек (цветные границы) */
+/* -------------------- */
+
+/* Осколки (shards) - серый */
+.shard-card {
+    border-left: 4px solid #888;                       /* Серая полоса слева */
+}
+
+/* Сущности (essences) - фиолетовый */
+.essence-card {
+    border-left: 4px solid #9c36b5;                    /* Фиолетовая полоса */
+}
+
+/* Катализаторы - оранжевый */
+.catalyst-card {
+    border-left: 4px solid #ff922b;                    /* Оранжевая полоса */
+}
+
+/* Знамения (omens) - красный */
+.omen-card {
+    border-left: 4px solid #ff6b6b;                    /* Красная полоса */
+}
+
+/* Дистиллированные эмоции - зеленый */
+.distilled-card {
+    border-left: 4px solid #51cf66;                    /* Зеленая полоса */
+}
+
+/* -------------------- */
+/* Таблицы для оружия и брони */
+/* -------------------- */
+
+/* Контейнер таблицы */
+.items-table {
+    width: 100%;                                        /* На всю ширину */
+    background: linear-gradient(145deg, #2d2d2d, #252525); /* Градиентный фон */
+    border-radius: 12px;                                 /* Скругленные углы */
+    border: 2px solid #444;                              /* Рамка */
+    overflow: hidden;                                    /* Скрываем выходящее */
+    margin-top: 2rem;                                     /* Отступ сверху */
+}
+
+/* Заголовок таблицы */
+.table-header {
+    display: grid;                                       /* CSS Grid */
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;          /* Пропорции колонок */
+    background: #1a1a1a;                                 /* Темный фон */
+    padding: 1rem;                                       /* Внутренние отступы */
+    border-bottom: 2px solid #c8a951;                    /* Золотая линия снизу */
+    font-weight: bold;                                    /* Жирный шрифт */
+    color: #c8a951;                                       /* Золотой текст */
+    text-transform: uppercase;                            /* Заглавные */
+    font-size: 0.9rem;                                    /* Размер шрифта */
+}
+
+/* Строка таблицы */
+.table-row {
+    display: grid;                                       /* CSS Grid */
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;          /* Пропорции колонок */
+    padding: 0.8rem 1rem;                                /* Внутренние отступы */
+    border-bottom: 1px solid #444;                       /* Разделительная линия */
+    transition: all 0.3s ease;                           /* Плавная анимация */
+}
+
+/* Эффект при наведении на строку */
+.table-row:hover {
+    background: rgba(200, 169, 81, 0.1);                 /* Полупрозрачный золотой фон */
+}
+
+/* Последняя строка без нижней границы */
+.table-row:last-child {
+    border-bottom: none;                                 /* Убираем линию */
+}
+
+/* Ячейка таблицы */
+.table-col {
+    color: #f0f0f0;                                      /* Светлый текст */
+    font-size: 0.9rem;                                    /* Размер шрифта */
+}
+
+/* -------------------- */
+/* Кнопка "Назад" */
+/* -------------------- */
+
+/* Контейнер для кнопки возврата */
+.back-section {
+    text-align: center;                                  /* По центру */
+    margin-top: 3rem;                                     /* Отступ сверху */
+    padding-top: 2rem;                                    /* Внутренний отступ сверху */
+    border-top: 2px solid #444;                           /* Разделительная линия */
+}
+
+/* Кнопка возврата */
+.back-button {
+    display: inline-flex;                                 /* Гибкий контейнер в строку */
+    align-items: center;                                  /* Выравнивание по вертикали */
+    gap: 0.5rem;                                          /* Расстояние между элементами */
+    color: #c8a951;                                       /* Золотой текст */
+    text-decoration: none;                                /* Убираем подчеркивание */
+    font-size: 1.1rem;                                    /* Размер шрифта */
+    font-weight: bold;                                    /* Жирный */
+    padding: 0.8rem 2rem;                                 /* Внутренние отступы */
+    border: 2px solid #c8a951;                            /* Золотая рамка */
+    border-radius: 8px;                                   /* Скругленные углы */
+    transition: all 0.3s ease;                            /* Плавная анимация */
+    background: rgba(200, 169, 81, 0.1);                  /* Полупрозрачный фон */
+}
+
+/* Эффект при наведении на кнопку */
+.back-button:hover {
+    background: #c8a951;                                  /* Золотой фон */
+    color: #1a1a1a;                                       /* Темный текст */
+    transform: translateY(-3px) scale(1.05);              /* Подъем и увеличение */
+    box-shadow: 0 10px 20px rgba(200, 169, 81, 0.3);      /* Тень */
+}
+
+/* -------------------- */
+/* Адаптивный дизайн (для мобильных устройств) */
+/* -------------------- */
+
+/* Для планшетов и маленьких экранов */
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшете */
+    }
+}
+
+/* Для мобильных телефонов */
+@media (max-width: 768px) {
+    /* Уменьшаем отступы */
+    .items-container {
+        padding: 1rem;
+    }
+    
+    /* Уменьшаем заголовок */
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    /* Категории в одну колонку */
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Предметы в одну колонку */
+    .items-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Навигация вертикальная */
+    .items-nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .items-nav a {
+        text-align: center;
+    }
+    
+    /* Для таблиц показываем как карточки */
+    .table-header {
+        display: none; /* Скрываем заголовок */
+    }
+    
+    .table-row {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 0.5rem;
+        border: 1px solid #444;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .category-card {
+        min-height: 240px;
+    }
+    
+    .category-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .back-button {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
