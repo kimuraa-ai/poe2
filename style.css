@@ -8,9 +8,26 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #f0f0f0;
-    background: #1a1a1a;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Фон с затемнением для ВСЕХ страниц */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/banner-home.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: brightness(40%);
 }
 
 /* Navigation */
@@ -62,43 +79,23 @@ body {
     border-color: #c8a951;
 }
 
-/* Main content */
+/* Активный пункт меню */
+.nav-menu a.active {
+    color: #c8a951;
+    background: rgba(200, 169, 81, 0.2);
+    border-color: #c8a951;
+}
+
+/* Main content - отступ для фиксированной навигации */
 main {
     margin-top: 80px;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+    padding: 2rem;
 }
 
-/* Show/hide sections */
-.content-section {
-    display: none;
-    height: calc(100vh - 80px);
-    overflow-y: auto;
-}
-
-#home {
-    display: flex;
-}
-
-#home:target,
-#classes:target,
-#skills:target,
-#items:target,
-#gallery:target {
-    display: block;
-}
-
-#classes:target ~ #home,
-#skills:target ~ #home,
-#items:target ~ #home,
-#gallery:target ~ #home {
-    display: none;
-}
-
-/* Home page */
+/* Hero секция для Home */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
-    height: 100%;
-    width: 100%;
+    height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,11 +115,11 @@ main {
     color: #f0f0f0;
 }
 
-/* Content sections */
+/* Content sections для страниц */
 .section-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 /* Section header */
@@ -192,8 +189,7 @@ main {
 .class-icon-card:hover {
     transform: translateY(-8px);
     border-color: #c8a951;
-    box-shadow: 0 20px 40px rgba(200, 169, 81, 0.15),
-                0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(200, 169, 81, 0.15);
 }
 
 .class-icon-image {
@@ -222,7 +218,6 @@ main {
 .class-icon-card:hover .class-icon-image {
     border-color: #e6c158;
     transform: scale(1.05);
-    box-shadow: 0 20px 40px rgba(200, 169, 81, 0.3);
 }
 
 .class-icon-img {
@@ -268,7 +263,6 @@ main {
 
 .class-icon-card:hover .class-name h3 {
     color: #e6c158;
-    text-shadow: 0 0 10px rgba(230, 193, 88, 0.3);
 }
 
 .class-icon-card:hover .class-name h3::after {
@@ -276,52 +270,83 @@ main {
 }
 
 /* Class-specific border colors */
-.warrior-icon {
-    border-color: #ff6b6b;
+.warrior-icon { border-color: #ff6b6b; }
+.sorceress-icon { border-color: #339af0; }
+.witch-icon { border-color: #9c36b5; }
+.ranger-icon { border-color: #51cf66; }
+.huntress-icon { border-color: #20c997; }
+.mercenary-icon { border-color: #f76707; }
+.monk-icon { border-color: #fab005; }
+
+/* Skills page */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-.sorceress-icon {
-    border-color: #339af0;
+/* Бургер-меню */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
 }
 
-.witch-icon {
-    border-color: #9c36b5;
+.burger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #c8a951;
+    transition: all 0.3s;
 }
 
-.ranger-icon {
-    border-color: #51cf66;
+.burger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
 }
-
-.huntress-icon {
-    border-color: #20c997;
+.burger.active span:nth-child(2) {
+    opacity: 0;
 }
-
-.mercenary-icon {
-    border-color: #f76707;
-}
-
-.monk-icon {
-    border-color: #fab005;
+.burger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .main-nav {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
         padding: 1rem;
-        position: relative;
     }
     
-    main {
-        margin-top: 0;
-        height: auto;
+    .burger {
+        display: flex;
     }
     
     .nav-menu {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        flex-direction: column;
+        padding: 1rem 0;
+        border-top: 2px solid #c8a951;
+        gap: 0;
+    }
+    
+    .nav-menu.open {
+        display: flex;
+    }
+    
+    .nav-menu li {
+        padding: 0.5rem 0;
+        text-align: center;
     }
     
     .hero h2 {
@@ -332,93 +357,26 @@ main {
         font-size: 1.2rem;
     }
     
-    .section-content {
-        padding: 1rem;
-    }
-    
     .classes-icons-grid {
         grid-template-columns: 1fr;
-        max-width: 500px;
-        gap: 2.5rem;
-    }
-    
-    .class-icon-card {
-        padding: 2.5rem;
-    }
-    
-    .class-icon-image {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .class-name h3 {
-        font-size: 2rem;
-    }
-    
-    .content-section {
-        height: auto;
-        min-height: calc(100vh - 80px);
-    }
-}
-
-@media (max-width: 480px) {
-    .classes-icons-grid {
+        max-width: 400px;
         gap: 2rem;
     }
     
-    .class-icon-card {
-        padding: 2rem;
-    }
-    
     .class-icon-image {
-        width: 180px;
-        height: 180px;
+        width: 150px;
+        height: 150px;
     }
     
     .class-name h3 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
-}
-
-
-/* Добавьте в самое начало style.css, после body { */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: #f0f0f0;
-    /* Вот эти строки: */
-    background-image: url('images/banner-home.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: #f0f0f0;
-    position: relative;
-    min-height: 100vh;
-}
-
-/* Фон с затемнением */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/banner-home.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-    /* Регулируйте затемнение здесь: */
-    filter: brightness(50%); /* 50% яркости = темнее */
+    
+    main {
+        padding: 1rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
 }

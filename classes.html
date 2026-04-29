@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes - POE2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"><h1>POE2</h1></a>
+            </div>
+            <button class="burger" id="burgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+         <ul class="nav-menu" id="navMenu">
+    <li><a href="index.html"   class="nav-link">Home</a></li>
+    <li><a href="classes.html" class="nav-link">Classes</a></li>
+    <li><a href="skills.html"  class="nav-link">Passive Tree</a></li>
+    <li><a href="items/index.html" class="nav-link">Items</a></li>
+      <li><a href="mtx.html" class="nav-link">MTX</a></li> 
+    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+</ul>
+        </nav>
+    </header>
+
+    <main>
+           <section id="classes" class="content-section">
+            <div class="section-content">
+                <div class="section-header">
+                    <h2>Choose Your Class</h2>
+                    <p>Click on any class to view details</p>
+                </div>
+                <div class="classes-icons-grid">
+                    <a href="classes/warrior.html"   class="class-icon-card">
+                        <div class="class-icon-image warrior-icon">
+                            <img src="images/warrior-icon.jpg" alt="Warrior" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Warrior</h3></div>
+                    </a>
+                    <a href="classes/sorceress.html" class="class-icon-card">
+                        <div class="class-icon-image sorceress-icon">
+                            <img src="images/sorceress-icon.jpg" alt="Sorceress" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Sorceress</h3></div>
+                    </a>
+                    <a href="classes/witch.html"     class="class-icon-card">
+                        <div class="class-icon-image witch-icon">
+                            <img src="images/witch-icon.jpg" alt="Witch" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Witch</h3></div>
+                    </a>
+                    <a href="classes/ranger.html"    class="class-icon-card">
+                        <div class="class-icon-image ranger-icon">
+                            <img src="images/ranger-icon.jpg" alt="Ranger" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Ranger</h3></div>
+                    </a>
+                    <a href="classes/huntress.html"  class="class-icon-card">
+                        <div class="class-icon-image huntress-icon">
+                            <img src="images/huntress-icon.jpg" alt="Huntress" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Huntress</h3></div>
+                    </a>
+                    <a href="classes/mercenary.html" class="class-icon-card">
+                        <div class="class-icon-image mercenary-icon">
+                            <img src="images/mercenary-icon.jpg" alt="Mercenary" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Mercenary</h3></div>
+                    </a>
+                    <a href="classes/monk.html"      class="class-icon-card">
+                        <div class="class-icon-image monk-icon">
+                            <img src="images/monk-icon.jpg" alt="Monk" class="class-icon-img">
+                        </div>
+                        <div class="class-name"><h3>Monk</h3></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.getElementById('burgerBtn').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('open');
+            document.getElementById('burgerBtn').classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

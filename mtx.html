@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTX Cosmetics - POE2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для MTX страницы */
+        .mtx-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Поиск и фильтры */
+        .mtx-controls {
+            background: #2d2d2d;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #444;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 2px solid #444;
+            background: #1a1a1a;
+            color: #f0f0f0;
+            font-size: 1rem;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #c8a951;
+        }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .cat-btn {
+            background: #1a1a1a;
+            color: #f0f0f0;
+            border: 2px solid #444;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cat-btn:hover,
+        .cat-btn.active {
+            background: #c8a951;
+            color: #1a1a1a;
+            border-color: #c8a951;
+        }
+
+        /* Результаты */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #aaa;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .results-count {
+            background: #2d2d2d;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* Сетка MTX */
+        .mtx-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .mtx-card {
+            background: linear-gradient(145deg, #2d2d2d, #252525);
+            border: 2px solid #444;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mtx-card:hover {
+            transform: translateY(-8px);
+            border-color: #c8a951;
+            box-shadow: 0 15px 30px rgba(200, 169, 81, 0.2);
+        }
+
+        .mtx-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;        /* изображение помещается целиком */
+    display: block;
+    background: linear-gradient(145deg, #1a1a1a, #252525); /* градиентный фон */
+    padding: 1rem;              /* отступы вокруг фото */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.mtx-card:hover .mtx-image {
+    transform: scale(1.02);     /* легкое увеличение при наведении */
+}
+
+        .mtx-info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .mtx-info h3 {
+            color: #c8a951;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mtx-info p {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .mtx-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .mtx-tag {
+            background: rgba(200, 169, 81, 0.15);
+            color: #c8a951;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Пустое состояние */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #888;
+            grid-column: 1/-1;
+        }
+
+        /* Modal окно для видео */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            border: 3px solid #c8a951;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: #c8a951;
+        }
+
+        .modal-title {
+            padding: 1rem;
+            text-align: center;
+            background: #2d2d2d;
+            border-top: 1px solid #444;
+        }
+
+        .modal-title h3 {
+            color: #c8a951;
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-title p {
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .mtx-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"><h1>POE2</h1></a>
+            </div>
+            <button class="burger" id="burgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="classes.html" class="nav-link">Classes</a></li>
+                <li><a href="skills.html" class="nav-link">Passive Tree</a></li>
+                <li><a href="items/index.html" class="nav-link">Items</a></li>
+                <li><a href="mtx.html" class="nav-link active">MTX</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="mtx-container">
+            <div class="section-header">
+                <h2>MTX Cosmetics</h2>
+                <p>Microtransactions - Armor sets, weapon effects,  pets, portals and more</p>
+            </div>
+
+            <!-- Поиск и фильтры -->
+            <div class="mtx-controls">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="🔍 Search MTX... (e.g., 'infernal', 'wing', 'pet')">
+                </div>
+                <div class="category-filters" id="categoryFilters">
+                    <button class="cat-btn active" data-cat="all">All</button>
+                    <!-- Категории будут добавлены из JavaScript -->
+                </div>
+            </div>
+
+            <!-- Информация о результатах -->
+            <div class="results-info" id="resultsInfo">
+                <span class="results-count" id="resultsCount">Loading...</span>
+            </div>
+
+            <!-- Сетка MTX -->
+            <div class="mtx-grid" id="mtxGrid">
+                <!-- Карточки будут добавляться через JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal окно для видео -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="video-container" id="videoContainer">
+                <!-- YouTube iframe будет вставляться сюда -->
+            </div>
+            <div class="modal-title" id="modalTitle">
+                <h3>Title</h3>
+                <p>Description</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Бургер меню
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (burgerBtn && navMenu) {
+            burgerBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                burgerBtn.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('open');
+                    burgerBtn.classList.remove('active');
+                });
+            });
+        }
+
+        // ========== MTX ДАННЫЕ - ДОБАВЛЯЙ СВОИ ПРЕДМЕТЫ СЮДА ==========
+        const mtxItems = [
+            // === ARMOR SETS ===
+            {
+                id: 1,
+                name: "Twilight Armor Set",
+                description: "A dark and mystical armor set with glowing purple accents. Includes helmet, body armor, gloves and boots.",
+                image: "images/mtx/twilight-armor.jpg",
+                category: "Armor Set",
+                videoId: "Ev7l5saj4qs",
+                videoTitle: "Twilight Armor Set Preview",
+                videoDesc: "Full showcase of the Twilight Armor Set in action"
+            },
+            {
+                id: 2,
+                name: "Infernal Armor Set",
+                description: "Burning armor set with fire effects and ember trails. Turns your character into a walking inferno.",
+                image: "images/mtx/infernal-armor.jpg",
+                category: "Armor Set",
+                videoId: "qS1XU67ObCE",
+                videoTitle: "Infernal Armor Set",
+                videoDesc: "See the fiery armor in action"
+            },
+            {
+                id: 3,
+                name: "Celestial Armor Set",
+                description: "Cosmic-themed armor with stars and galaxy patterns. Glows in dark areas.",
+                image: "images/mtx/celestial-armor.jpg",
+                category: "Armor Set",
+                videoId: "fjSMZd956XU",
+                videoTitle: "Celestial Armor Set",
+                videoDesc: "Explore the cosmos with this armor"
+            },
+
+            // === BACK ATTACHMENTS (WINGS/CAPES) ===
+            {
+                id: 4,
+                name: "Infernal Wings",
+                description: "Massive flaming wings that leave a trail of fire behind you.",
+                image: "images/mtx/infernal-wings.jpg",
+                category: "Back Attachment",
+                videoId: "br8-nG41n5Q",
+                videoTitle: "Infernal Wings Preview",
+                videoDesc: "Watch the wings in motion"
+            },
+            {
+                id: 5,
+                name: "Angelic Wings",
+                description: "Pure white feathered wings with a holy glow effect.",
+                image: "images/mtx/angelic-wings.jpg",
+                category: "Back Attachment",
+                videoId: "u13GujKHsbc",
+                videoTitle: "Angelic Wings",
+                videoDesc: "Heavenly wings showcase"
+            },
+
+            // === WEAPON EFFECTS ===
+            {
+                id: 6,
+                name: "Infernal Weapon Effect",
+                description: "Your weapon burns with eternal flames, leaving fire trails on attacks.",
+                image: "images/mtx/infernal-weapon.jpg",
+                category: "Weapon Effect",
+                videoId: "DTKspuIXhBQ",
+                videoTitle: "Infernal Weapon Effect",
+                videoDesc: "Weapon effect in combat"
+            },
+            {
+                id: 7,
+                name: "Celestial Weapon Effect",
+                description: "Stars orbit around your weapon, leaving cosmic trails.",
+                image: "images/mtx/celestial-weapon.jpg",
+                category: "Weapon Effect",
+                videoId: "OMVWeeB9IYg",
+                videoTitle: "Celestial Weapon Effect",
+                videoDesc: "Cosmic weapon effect showcase"
+            },
+
+           
+
+            // === PETS ===
+            {
+                id: 10,
+                name: "Celestial Cat",
+                description: "A cosmic feline companion that follows you everywhere.",
+                image: "images/mtx/celestial-cat.jpg",
+                category: "Pet",
+                videoId: "w-kx0zWsykM",
+                videoTitle: "Celestial Cat Pet",
+                videoDesc: "Meet your new celestial companion"
+            },
+            {
+                id: 11,
+                name: "Arctic Fox Pet",
+                description: "Pets can be placed in your personal Hideout or assigned to follow your character around.",
+                image: "images/mtx/Arctic-Fox-Pet.jpg",
+                category: "Pet",
+                videoId: "5Jbi3AQv4yU",
+                videoTitle: "Arctic Fox Pet",
+                videoDesc: "Your fiery companion"
+            },
+
+            // === PORTALS ===
+            {
+                id: 12,
+                name: "Infernal Stygian Portal Effect",
+                description: "Replaces the standard effect on portals you create with the Infernal Stygian Portal Effect",
+                image: "images/mtx/Infernal-Stygian-Portal-Effect.jpg",
+                category: "Portal",
+                videoId: "W-q1QL_Wj7E",
+                videoTitle: "Infernal Stygian Portal Effect",
+                videoDesc: "Portal effect showcase"
+            },
+            {
+                id: 13,
+                name: "Celestial Steam-powered Portal Effect",
+                description: "A cosmic gateway to the stars. Beautiful galaxy effects.",
+                image: "images/mtx/Celestial-Steam-powered-Portal-Effect.jpg",
+                category: "Portal",
+                videoId: "pbFUZDhG17c",
+                videoTitle: "Celestial Steam-powered Portal Effect",
+                videoDesc: "Cosmic portal effect"
+            },
+
+            // === CHARACTER EFFECTS ===
+            {
+                id: 14,
+                name: "Infernal Character Effect",
+                description: "Your character emits smoke and embers. Leaves fire footprints.",
+                image: "images/mtx/infernal-character.jpg",
+                category: "Character Effect",
+                videoId: "0vWBiclcEsg",
+                videoTitle: "Infernal Character Effect",
+                videoDesc: "Character aura effect"
+            },
+
+            // === FOOTPRINTS ===
+            {
+                id: 15,
+                name: "Infernal Footprints Effect",
+                description: "Leave burning footprints wherever you walk.",
+                image: "images/mtx/infernal-footprints-effect.jpg",
+                category: "Footprints",
+                videoId: "VfTHaTFpPA8",
+                videoTitle: "Infernal Footprints Effect",
+                videoDesc: "Footprint effect showcase"
+            },
+
+            // ========== ДОБАВЛЯЙ НОВЫЕ MTX ПО ЭТОМУ ШАБЛОНУ ==========
+            // {
+            //     id: 16,
+            //     name: "Название MTX",
+            //     description: "Краткое описание (одна-две строки)",
+            //     image: "images/mtx/название-файла.jpg",
+            //     category: "Armor Set / Back Attachment / Weapon Effect / Skill Effect / Pet / Portal / Character Effect / Footprints",
+            //     videoId: "YouTubeID",
+            //     videoTitle: "Заголовок видео",
+            //     videoDesc: "Описание видео"
+            // },
+        ];
+
+        // Получаем уникальные категории из данных
+        const categories = ['all', ...new Set(mtxItems.map(item => item.category))];
+
+        // Рендерим кнопки категорий
+        const categoryFilters = document.getElementById('categoryFilters');
+        if (categoryFilters) {
+            categoryFilters.innerHTML = categories.map(cat => 
+                `<button class="cat-btn ${cat === 'all' ? 'active' : ''}" data-cat="${cat}">${cat === 'all' ? 'All' : cat}</button>`
+            ).join('');
+        }
+
+        // Текущие фильтры
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        // Функция для отображения MTX карточек
+        function renderMTX() {
+            const grid = document.getElementById('mtxGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            if (!grid) return;
+            
+            // Фильтрация
+            let filtered = mtxItems;
+            
+            // Фильтр по категории
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(item => item.category === currentCategory);
+            }
+            
+            // Фильтр по поиску
+            if (currentSearch.trim() !== '') {
+                const searchTerm = currentSearch.toLowerCase();
+                filtered = filtered.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm) || 
+                    item.description.toLowerCase().includes(searchTerm) ||
+                    item.category.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Обновляем счетчик
+            if (resultsCount) {
+                resultsCount.textContent = `Showing ${filtered.length} of ${mtxItems.length} items`;
+            }
+            
+            // Если ничего не найдено
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <p>✨ No MTX found matching your search ✨</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Try different keywords or browse all categories</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Рендерим карточки
+            grid.innerHTML = filtered.map(item => `
+                <div class="mtx-card" data-id="${item.id}">
+                    <img src="${item.image}" alt="${item.name}" class="mtx-image" onerror="this.src='images/placeholder.jpg'">
+                    <div class="mtx-info">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <div class="mtx-tags">
+                            <span class="mtx-tag">${item.category}</span>
+                            <span class="mtx-tag">▶ Click to preview</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Добавляем обработчики кликов
+            document.querySelectorAll('.mtx-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = parseInt(card.getAttribute('data-id'));
+                    const item = mtxItems.find(i => i.id === id);
+                    if (item) {
+                        openVideoModal(item);
+                    }
+                });
+            });
+        }
+        
+        // Обновление при изменении фильтров
+        function updateFilters() {
+            renderMTX();
+        }
+        
+        // Поиск
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                updateFilters();
+            });
+        }
+        
+        // Категории
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-cat');
+                updateFilters();
+            });
+        });
+        
+        // Modal функции
+        const modal = document.getElementById('videoModal');
+        const videoContainer = document.getElementById('videoContainer');
+        const modalTitle = document.getElementById('modalTitle');
+        
+        function openVideoModal(item) {
+            if (!modal || !videoContainer) return;
+            
+            videoContainer.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${item.videoId}?autoplay=1&rel=0" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            
+            modalTitle.innerHTML = `
+                <h3>${item.videoTitle || item.name}</h3>
+                <p>${item.videoDesc || item.description}</p>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            if (!modal) return;
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            if (videoContainer) {
+                videoContainer.innerHTML = '';
+            }
+        }
+        
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeVideoModal);
+        }
+        
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeVideoModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+            });
+        }
+        
+        // Инициализация
+        renderMTX();
+    </script>
+
+</body>
+</html>

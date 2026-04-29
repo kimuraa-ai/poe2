@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - POE2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Небольшие дополнения только для сетки галереи */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: #2d2d2d;
+            border: 2px solid #444;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: #c8a951;
+            box-shadow: 0 10px 20px rgba(200,169,81,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .gallery-info h4 {
+            color: #c8a951;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-info p {
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"><h1>POE2</h1></a>
+            </div>
+            <button class="burger" id="burgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="classes.html" class="nav-link">Classes</a></li>
+                <li><a href="skills.html" class="nav-link">Passive Tree</a></li>
+                <li><a href="items/index.html" class="nav-link">Items</a></li>
+                  <li><a href="mtx.html" class="nav-link">MTX</a></li> 
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Gallery</h2>
+                <p>Explore the dark and dangerous world of Wraeclast</p>
+            </div>
+
+            <!-- Gallery Grid - Добавляй свои фотографии сюда -->
+            <div class="gallery-grid">
+                <!-- 
+                    Просто копируй этот блок для каждой новой фотографии:
+                    
+                    <div class="gallery-item">
+                        <img src="images/gallery/название-фото.jpg" alt="Описание">
+                        <div class="gallery-info">
+                            <h4>Название</h4>
+                            <p>Краткое описание</p>
+                        </div>
+                    </div>
+                -->
+
+                <!-- Пример (раскомментируй и замени на свои фото): -->
+                <!--
+                <div class="gallery-item">
+                    <img src="images/gallery/warrior-art.jpg" alt="Warrior">
+                    <div class="gallery-info">
+                        <h4>Warrior</h4>
+                        <p>The unstoppable force</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/sorceress-art.jpg" alt="Sorceress">
+                    <div class="gallery-info">
+                        <h4>Sorceress</h4>
+                        <p>Master of arcane arts</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/witch-art.jpg" alt="Witch">
+                    <div class="gallery-info">
+                        <h4>Witch</h4>
+                        <p>Powerful spellcaster</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/ranger-art.jpg" alt="Ranger">
+                    <div class="gallery-info">
+                        <h4>Ranger</h4>
+                        <p>Master of the bow</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/monk-art.jpg" alt="Monk">
+                    <div class="gallery-info">
+                        <h4>Monk</h4>
+                        <p>Martial artist</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/mercenary-art.jpg" alt="Mercenary">
+                    <div class="gallery-info">
+                        <h4>Mercenary</h4>
+                        <p>Crossbow expert</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/act1-clearfall.jpg" alt="Clearfell">
+                    <div class="gallery-info">
+                        <h4>Clearfell</h4>
+                        <p>Act 1 location</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/gallery/boss-king-of-the-mists.jpg" alt="King of the Mists">
+                    <div class="gallery-info">
+                        <h4>King of the Mists</h4>
+                        <p>Ritual boss</p>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Сообщение, если нет фото -->
+            <div style="text-align: center; padding: 3rem; color: #666;" id="noImagesMsg">
+                <p>No images yet. Add your screenshots to <strong>images/gallery/</strong> folder</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem;">Then uncomment the example blocks above and replace with your images</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Бургер меню
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (burgerBtn && navMenu) {
+            burgerBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                burgerBtn.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('open');
+                    burgerBtn.classList.remove('active');
+                });
+            });
+        }
+
+        // Проверяем, есть ли фото в галерее, и скрываем сообщение
+        const galleryGrid = document.querySelector('.gallery-grid');
+        const noImagesMsg = document.getElementById('noImagesMsg');
+        
+        if (galleryGrid && noImagesMsg) {
+            // Если в сетке есть дочерние элементы (фото), скрываем сообщение
+            if (galleryGrid.children.length > 0) {
+                noImagesMsg.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
