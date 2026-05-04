@@ -6,10 +6,10 @@
     <title>Gallery - POE2</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Небольшие дополнения только для сетки галереи */
+        /* Стили для галереи (сохраняем общий стиль сайта) */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -20,6 +20,7 @@
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .gallery-item:hover {
@@ -33,22 +34,71 @@
             height: 220px;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
         }
 
-        .gallery-info {
-            padding: 1rem;
-            text-align: center;
+        .gallery-item:hover img {
+            transform: scale(1.05);
         }
 
-        .gallery-info h4 {
+        /* Lightbox для увеличения фото */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border: 3px solid #c8a951;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
             color: #c8a951;
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
         }
 
-        .gallery-info p {
-            color: #aaa;
-            font-size: 0.85rem;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .gallery-item img {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -67,7 +117,7 @@
                 <li><a href="classes.html" class="nav-link">Classes</a></li>
                 <li><a href="skills.html" class="nav-link">Passive Tree</a></li>
                 <li><a href="items/index.html" class="nav-link">Items</a></li>
-                  <li><a href="mtx.html" class="nav-link">MTX</a></li> 
+                <li><a href="mtx.html" class="nav-link">MTX</a></li>
                 <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
             </ul>
         </nav>
@@ -80,95 +130,18 @@
                 <p>Explore the dark and dangerous world of Wraeclast</p>
             </div>
 
-            <!-- Gallery Grid - Добавляй свои фотографии сюда -->
-            <div class="gallery-grid">
-                <!-- 
-                    Просто копируй этот блок для каждой новой фотографии:
-                    
-                    <div class="gallery-item">
-                        <img src="images/gallery/название-фото.jpg" alt="Описание">
-                        <div class="gallery-info">
-                            <h4>Название</h4>
-                            <p>Краткое описание</p>
-                        </div>
-                    </div>
-                -->
-
-                <!-- Пример (раскомментируй и замени на свои фото): -->
-                <!--
-                <div class="gallery-item">
-                    <img src="images/gallery/warrior-art.jpg" alt="Warrior">
-                    <div class="gallery-info">
-                        <h4>Warrior</h4>
-                        <p>The unstoppable force</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/sorceress-art.jpg" alt="Sorceress">
-                    <div class="gallery-info">
-                        <h4>Sorceress</h4>
-                        <p>Master of arcane arts</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/witch-art.jpg" alt="Witch">
-                    <div class="gallery-info">
-                        <h4>Witch</h4>
-                        <p>Powerful spellcaster</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/ranger-art.jpg" alt="Ranger">
-                    <div class="gallery-info">
-                        <h4>Ranger</h4>
-                        <p>Master of the bow</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/monk-art.jpg" alt="Monk">
-                    <div class="gallery-info">
-                        <h4>Monk</h4>
-                        <p>Martial artist</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/mercenary-art.jpg" alt="Mercenary">
-                    <div class="gallery-info">
-                        <h4>Mercenary</h4>
-                        <p>Crossbow expert</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/act1-clearfall.jpg" alt="Clearfell">
-                    <div class="gallery-info">
-                        <h4>Clearfell</h4>
-                        <p>Act 1 location</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/gallery/boss-king-of-the-mists.jpg" alt="King of the Mists">
-                    <div class="gallery-info">
-                        <h4>King of the Mists</h4>
-                        <p>Ritual boss</p>
-                    </div>
-                </div>
-                -->
-            </div>
-
-            <!-- Сообщение, если нет фото -->
-            <div style="text-align: center; padding: 3rem; color: #666;" id="noImagesMsg">
-                <p>No images yet. Add your screenshots to <strong>images/gallery/</strong> folder</p>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem;">Then uncomment the example blocks above and replace with your images</p>
+            <!-- Gallery Grid - 10 фото gallery1.jpg - gallery10.jpg -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Фото будут добавлены через JavaScript -->
             </div>
         </div>
     </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightboxImg" src="" alt="">
+    </div>
 
     <script>
         // Бургер меню
@@ -189,16 +162,55 @@
             });
         }
 
-        // Проверяем, есть ли фото в галерее, и скрываем сообщение
-        const galleryGrid = document.querySelector('.gallery-grid');
-        const noImagesMsg = document.getElementById('noImagesMsg');
+        // Генерация 10 фотографий gallery1.jpg - gallery10.jpg
+        const galleryGrid = document.getElementById('galleryGrid');
         
-        if (galleryGrid && noImagesMsg) {
-            // Если в сетке есть дочерние элементы (фото), скрываем сообщение
-            if (galleryGrid.children.length > 0) {
-                noImagesMsg.style.display = 'none';
+        if (galleryGrid) {
+            for (let i = 1; i <= 10; i++) {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="images/gallery/gallery${i}.jpg" alt="Gallery Image ${i}" onerror="this.src='images/placeholder.jpg'">
+                `;
+                
+                // Добавляем обработчик клика для открытия lightbox
+                galleryItem.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    openLightbox(img.src);
+                });
+                
+                galleryGrid.appendChild(galleryItem);
             }
         }
+
+        // Lightbox функции
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(src) {
+            if (lightboxImg) lightboxImg.src = src;
+            if (lightbox) lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            if (lightbox) lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                    closeLightbox();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
     </script>
 
 </body>
